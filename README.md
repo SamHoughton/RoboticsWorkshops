@@ -1,2 +1,2 @@
 # RoboticsWorkshops
-Robotics Workshop scripts and work
+Robotic's Workshop python scripts and work
