@@ -2,10 +2,10 @@
 Robotic's Workshop python scripts and work
 
 
- **Useful commands:**
+ ## Useful commands: ##
 
 
-**** roslaunch Commmands ****
+###### roslaunch Commmands ######
 
 roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$(rospack find turtlebot_gazebo)/worlds/empty.world // Launch Gazebo Simulator. 
 
@@ -22,7 +22,7 @@ rqt_image_view. // Display image streams.
 roslaunch turtlebot_rviz_launchers view_robot.launch // Starts the camera on the real robot.
 
 
-**** Python Scripting Commmands ****
+### Python Scripting Commmands ###
 
 // Create a workspace.
 
@@ -55,7 +55,7 @@ chmod +x myscript.py
 
 ./myscript.py // Whatever your path is.
 
-**** Linux Commmands ****
+### Linux Commmands ###
 
 [Ctrl-C]        // Stop a currently running command.
 [Tab]           // Useful to auto-complete a command.
