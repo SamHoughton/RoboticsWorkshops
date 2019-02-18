@@ -8,21 +8,24 @@ wheel_radius = .1
 robot_radius = 1
 
 
-class Control:
+class Kinematics:
 	def __init__(self):
-		self.input_pub = rospy.Publisher('/wheel_vel_left', Float32, queue_size=10)
-		vel = input("")		
-		self.publish_velocity(vel)
-		
-	
-	def publish_velocity(self,vel):
-		while not rospy.is_shutdown():
-			self.input_pub.publish(vel)
-			r.sleep()
+		self.vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+		self.input_sub = rospy.Subscriber('/wheel_vel_left', Float32, self.forward_kinematics)
+		self.twist = Twist()
 
-rospy.init_node('control')
-r = rospy.Rate(10)
-control = Control()
+	def forward_kinematics(self, w_l):
+		c_l = 1.0 * w_l.data
+		c_r = 1.0 * 0.0
+		v = (c_l + c_r) / 2
+		a = (c_r - c_l) / (2 * 1.0)
+		print(v,a)
+		self.twist.linear.x = v
+		self.twist.angular.z = a
+		self.vel_pub.publish(self.twist)
+
+rospy.init_node('kinematics')
+kinematics = Kinematics()
 rospy.spin()
 
 # computing the forward kinematics for a differential drive
