@@ -18,10 +18,11 @@ robot_radius = 1
 class DirectControl:
     def __init__(self):
         self.bridge = cv_bridge.CvBridge()
-        self.image_sub = rospy.Subscriber('/wheel_vel_left', data,
-                                          self.control_callback)
-        self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist,
-                                           queue_size=1)
+        
+        self.image_sub = rospy.Subscriber('/wheel_vel_left', data, self.control_callback)
+        
+        self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+        
         self.twist = Twist()
         
     def control_callback(self, data):
