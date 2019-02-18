@@ -4,6 +4,10 @@ import math
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Float32
 
+wheel_radius = .1
+robot_radius = 1
+
+
 class Control:
 	def __init__(self):
 		self.input_pub = rospy.Publisher('/wheel_vel_left', Float32, queue_size=10)
@@ -20,11 +24,6 @@ rospy.init_node('control')
 r = rospy.Rate(10)
 control = Control()
 rospy.spin()
-
-
-wheel_radius = .1
-robot_radius = 1
-
 
 # computing the forward kinematics for a differential drive
 def forward_kinematics(w_l, w_r):
