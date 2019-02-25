@@ -1,5 +1,4 @@
 # Assignment Folder
-## Latest File for Assignment Updated Here
 
 ### Basic Commands for the Assignment
 
