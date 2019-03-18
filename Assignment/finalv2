@@ -52,18 +52,20 @@ class findpillar:
         print msg.ranges[-10]
         if msg.ranges[-10] < 1:
             print("TURN MOTHERFUCKER")
-            rate = rospy.Rate(100)
-            self.twist.angular.z = 0
-            self.twist.linear.x = -5
+            rate = rospy.Rate(10)
+            self.twist.angular.z = 2
+            self.twist.linear.x = 0
             self.cmd_vel_pub.publish(self.twist) 
             rate.sleep()
         elif msg.ranges[10] < 1:
             print("turn")
-            rate = rospy.Rate(100)
-            self.twist.angular.z = 0
-            self.twist.linear.x = -5
+            rate = rospy.Rate(10)
+            self.twist.angular.z = 2
+            self.twist.linear.x = 0
             self.cmd_vel_pub.publish(self.twist) 
             rate.sleep()
+            
+        
           
     def imageCallback(self, data):
         
@@ -157,7 +159,9 @@ class findpillar:
         
         lim = height*0.85
         
-        self.laserS=rospy.Subscriber("/scan", LaserScan, self.laserCallback)
+        action = actionlib.SimpleActionClient("/move_base", MoveBaseAction)
+        action.cancel_goal()
+                
         
         # If any of the thresholded object is directly in front of the robot
         # return true to change the status of the beacon to found
@@ -215,6 +219,8 @@ class findpillar:
         target.target_pose.pose.orientation.w = 1.0
         # Send the waypoint to the navigation stack
         action.send_goal(target)
+        
+        self.laserS=rospy.Subscriber("/scan", LaserScan, self.laserCallback)
 
         for i in range(len(self.wayPointsR)):
             
