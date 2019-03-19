@@ -51,14 +51,12 @@ class findpillar:
         
         print msg.ranges[-10]
         if msg.ranges[-10] < 1:
-            print("TURN MOTHERFUCKER")
             rate = rospy.Rate(10)
             self.twist.angular.z = 2
             self.twist.linear.x = 0
             self.cmd_vel_pub.publish(self.twist) 
             rate.sleep()
         elif msg.ranges[10] < 1:
-            print("turn")
             rate = rospy.Rate(10)
             self.twist.angular.z = 2
             self.twist.linear.x = 0
