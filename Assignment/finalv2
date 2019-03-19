@@ -157,11 +157,7 @@ class findpillar:
         #Creates a bound for bottom of shape
         botSearch = height*0.8
         
-        lim = height*0.85
-        
-        action = actionlib.SimpleActionClient("/move_base", MoveBaseAction)
-        action.cancel_goal()
-                
+        lim = height*0.85                       
         
         # If any of the thresholded object is directly in front of the robot
         # return true to change the status of the beacon to found
